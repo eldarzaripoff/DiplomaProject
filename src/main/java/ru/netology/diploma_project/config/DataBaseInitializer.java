@@ -21,20 +21,24 @@ public class DataBaseInitializer {
         return  args -> {
             String password = passwordEncoder.encode("aboba");
 
-            User eldar = User.builder()
-                    .login("eldar")
-                    .password(password)
-                    .role(Role.ADMIN)
-                    .build();
+            if (!userRepository.findByLogin("eldar").isPresent()) {
+                User eldar = User.builder()
+                        .login("eldar")
+                        .password(password)
+                        .role(Role.ADMIN)
+                        .build();
+                userRepository.save(eldar);
+            }
 
-            User rustem = User.builder()
-                    .login("rustem")
-                    .password(password)
-                    .role(Role.USER)
-                    .build();
+            if (!userRepository.findByLogin("rustem").isPresent()) {
 
-            userRepository.save(eldar);
-            userRepository.save(rustem);
+                User rustem = User.builder()
+                        .login("rustem")
+                        .password(password)
+                        .role(Role.USER)
+                        .build();
+                userRepository.save(rustem);
+            }
         };
     }
 }
