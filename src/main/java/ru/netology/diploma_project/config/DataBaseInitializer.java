@@ -18,7 +18,7 @@ public class DataBaseInitializer {
 
     @Bean
     CommandLineRunner initDataBase() {
-        return  args -> {
+        return args -> {
             String password = passwordEncoder.encode("aboba");
 
             if (!userRepository.findByLogin("eldar").isPresent()) {
