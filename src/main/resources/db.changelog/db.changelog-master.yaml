@@ -6,12 +6,6 @@ databaseChangeLog:
       file: migrations/ScriptForCreationTheFiles.sql
       relativeToChangeLogFile: true
   - include:
-      file: migrations/ScriptForInsertionMe.sql
-      relativeToChangeLogFile: true
-  - include:
-      file: migrations/ScriptForCryptingPassword.sql
-      relativeToChangeLogFile: true
-  - include:
       file: migrations/ScriptForCreationTheTokens.sql
       relativeToChangeLogFile: true
   
