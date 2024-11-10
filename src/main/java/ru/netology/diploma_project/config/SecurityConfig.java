@@ -27,7 +27,6 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/login").permitAll()
-                        .requestMatchers("/register").permitAll()
                         .anyRequest().authenticated()) // Разрешить доступ ко всем запросам
                 .csrf(AbstractHttpConfigurer::disable) // Отключение CSRF
                 .sessionManagement(session -> session.sessionCreationPolicy(STATELESS))
