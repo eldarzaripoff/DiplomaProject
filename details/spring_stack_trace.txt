@@ -1,0 +1,42 @@
+2024-11-07T23:21:10.151+03:00  INFO 20216 --- [diploma-project] [  restartedMain] r.n.d.DiplomaProjectApplication          : Starting DiplomaProjectApplication using Java 22.0.2 with PID 20216 (C:\Users\zarip\IdeaProjects\diploma-project\target\classes started by zarip in C:\Users\zarip\IdeaProjects\diploma-project)
+2024-11-07T23:21:10.158+03:00  INFO 20216 --- [diploma-project] [  restartedMain] r.n.d.DiplomaProjectApplication          : No active profile set, falling back to 1 default profile: "default"
+2024-11-07T23:21:10.298+03:00  INFO 20216 --- [diploma-project] [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-11-07T23:21:10.298+03:00  INFO 20216 --- [diploma-project] [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-11-07T23:21:13.346+03:00  INFO 20216 --- [diploma-project] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-07T23:21:13.538+03:00  INFO 20216 --- [diploma-project] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 168 ms. Found 1 JPA repository interface.
+2024-11-07T23:21:16.163+03:00  INFO 20216 --- [diploma-project] [  restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2024-11-07T23:21:16.207+03:00  INFO 20216 --- [diploma-project] [  restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-11-07T23:21:16.207+03:00  INFO 20216 --- [diploma-project] [  restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.30]
+2024-11-07T23:21:16.439+03:00  INFO 20216 --- [diploma-project] [  restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-11-07T23:21:16.443+03:00  INFO 20216 --- [diploma-project] [  restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 6139 ms
+2024-11-07T23:21:16.846+03:00  INFO 20216 --- [diploma-project] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-11-07T23:21:17.403+03:00  INFO 20216 --- [diploma-project] [  restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@7a9951f8
+2024-11-07T23:21:17.409+03:00  INFO 20216 --- [diploma-project] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-11-07T23:21:19.666+03:00  INFO 20216 --- [diploma-project] [  restartedMain] liquibase.changelog                      : Reading from netology.databasechangelog
+2024-11-07T23:21:19.758+03:00  INFO 20216 --- [diploma-project] [  restartedMain] liquibase.ui                             : Database is up to date, no changesets to execute
+2024-11-07T23:21:19.764+03:00  INFO 20216 --- [diploma-project] [  restartedMain] liquibase.changelog                      : Reading from netology.databasechangelog
+2024-11-07T23:21:19.785+03:00  INFO 20216 --- [diploma-project] [  restartedMain] liquibase.util                           : UPDATE SUMMARY
+2024-11-07T23:21:19.786+03:00  INFO 20216 --- [diploma-project] [  restartedMain] liquibase.util                           : Run:                          0
+2024-11-07T23:21:19.786+03:00  INFO 20216 --- [diploma-project] [  restartedMain] liquibase.util                           : Previously run:               3
+2024-11-07T23:21:19.786+03:00  INFO 20216 --- [diploma-project] [  restartedMain] liquibase.util                           : Filtered out:                 0
+2024-11-07T23:21:19.786+03:00  INFO 20216 --- [diploma-project] [  restartedMain] liquibase.util                           : -------------------------------
+2024-11-07T23:21:19.786+03:00  INFO 20216 --- [diploma-project] [  restartedMain] liquibase.util                           : Total change sets:            3
+2024-11-07T23:21:19.788+03:00  INFO 20216 --- [diploma-project] [  restartedMain] liquibase.util                           : Update summary generated
+2024-11-07T23:21:19.920+03:00  INFO 20216 --- [diploma-project] [  restartedMain] liquibase.lockservice                    : Successfully released change log lock
+2024-11-07T23:21:19.927+03:00  INFO 20216 --- [diploma-project] [  restartedMain] liquibase.command                        : Command execution complete
+2024-11-07T23:21:20.315+03:00  INFO 20216 --- [diploma-project] [  restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-07T23:21:20.610+03:00  INFO 20216 --- [diploma-project] [  restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2024-11-07T23:21:20.720+03:00  INFO 20216 --- [diploma-project] [  restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-11-07T23:21:21.789+03:00  INFO 20216 --- [diploma-project] [  restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-07T23:21:21.983+03:00  WARN 20216 --- [diploma-project] [  restartedMain] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-11-07T23:21:24.470+03:00  INFO 20216 --- [diploma-project] [  restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-11-07T23:21:24.478+03:00  INFO 20216 --- [diploma-project] [  restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-07T23:21:25.235+03:00  INFO 20216 --- [diploma-project] [  restartedMain] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-11-07T23:21:27.136+03:00  INFO 20216 --- [diploma-project] [  restartedMain] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2024-11-07T23:21:27.137+03:00  WARN 20216 --- [diploma-project] [  restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2024-11-07T23:21:27.199+03:00  WARN 20216 --- [diploma-project] [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-11-07T23:21:28.901+03:00  INFO 20216 --- [diploma-project] [  restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-11-07T23:21:28.996+03:00  INFO 20216 --- [diploma-project] [  restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path '/'
+2024-11-07T23:21:29.013+03:00  INFO 20216 --- [diploma-project] [  restartedMain] r.n.d.DiplomaProjectApplication          : Started DiplomaProjectApplication in 20.273 seconds (process running for 21.685)
+Hibernate: select u1_0.id,u1_0.login,u1_0.password,u1_0.role from netology.users u1_0 where u1_0.login=?
+Hibernate: select u1_0.id,u1_0.login,u1_0.password,u1_0.role from netology.users u1_0 where u1_0.login=?

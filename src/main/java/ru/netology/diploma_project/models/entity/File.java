@@ -26,7 +26,7 @@ public class File {
     @Column(name = "file_data")
     private byte[] fileData;
     @Column(name = "file_size")
-    private int fileSize;
+    private Long fileSize;
     @ManyToOne
     @JoinColumn(name = "account_id", nullable = false)
     @JsonBackReference
