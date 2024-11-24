@@ -38,6 +38,10 @@ public class User implements UserDetails {
     @JsonManagedReference
     private List<File> files;
 
+    @OneToMany(mappedBy = "user")
+    @JsonManagedReference
+    private List<Token> tokens;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role.name()));
