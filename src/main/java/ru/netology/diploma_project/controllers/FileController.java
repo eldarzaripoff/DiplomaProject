@@ -56,7 +56,7 @@ public class FileController {
             if (foundFile.isEmpty()) {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Такого файла не существует");
             } else {
-                fileService.deleteFile(fileName, user);
+                fileService.deleteFile(fileName, user, authToken);
                 return ResponseEntity.status(HttpStatus.OK).body("File deleted successfully");
             }
         } catch (Exception e) {

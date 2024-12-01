@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import ru.netology.diploma_project.controllers.AuthorizationController;
 import ru.netology.diploma_project.models.entity.File;
@@ -46,9 +47,23 @@ public class FileService {
         log.info("Файл сохранён в БД");
     }
 
-    public void deleteFile(String fileName, User user) {
-        fileRepository.deleteByFileNameAndUser(fileName, user);
-        log.info("Файл с именем '{}' удалён для пользователя '{}'", fileName, user.getUsername());
+    @Transactional
+    public ResponseEntity<?> deleteFile(String fileName, User user, String token) {
+        var isTokenValid = tokenRepository.findByToken(token)
+                .map(t -> !t.isExpired() && !t.isRevoked())
+                .orElse(false);
+        if (jwtService.isTokenValid(token, user) && isTokenValid) {
+            if (!fileRepository.findByFileNameAndUser(fileName, user).isEmpty()) {
+                fileRepository.deleteByFileNameAndUser(fileName, user);
+                log.info("Файл с именем '{}' удалён для пользователя '{}'", fileName, user.getUsername());
+                return ResponseEntity.status(HttpStatus.OK).body("File is deleted successfully");
+            } else {
+                log.info("Файла с именем '{}' у пользователя '{}' не существует", fileName, user.getUsername());
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Такого файла не существует");
+            }
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Please, authorize!");
+        }
     }
 
     public Optional<File> findFileByNameAndUser(String fileName, User user) {
