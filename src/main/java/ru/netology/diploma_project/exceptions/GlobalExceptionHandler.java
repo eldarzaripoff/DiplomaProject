@@ -11,6 +11,6 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(BadCredentialsException.class)
     public ResponseEntity<String> handleBadCredentialsException(BadCredentialsException exception) {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("");
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Wrong login or password!");
     }
 }

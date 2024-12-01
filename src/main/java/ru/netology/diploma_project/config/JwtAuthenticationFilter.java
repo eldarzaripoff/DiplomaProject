@@ -5,6 +5,8 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.lang.NonNull;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -13,6 +15,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
+import ru.netology.diploma_project.controllers.AuthorizationController;
 import ru.netology.diploma_project.repositories.TokenRepository;
 import ru.netology.diploma_project.services.JwtService;
 
@@ -25,16 +28,21 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private final JwtService jwtService;
     private final UserDetailsService userDetailsService;
     private final TokenRepository tokenRepository;
+    private static final Logger log = LoggerFactory.getLogger(AuthorizationController.class);
+
 
     @Override
     protected void doFilterInternal(
             @NonNull HttpServletRequest request,
             @NonNull HttpServletResponse response,
             @NonNull FilterChain filterChain) throws ServletException, IOException {
-        final String authHeader = request.getHeader("auth-token");
+        // НЕ ЗАБУДЬ ИСПРАВИТЬ НА "auth-token"!!!!!!!!!!
+        final String authHeader = request.getHeader("Authorization");
         final String jwt;
         final String username;
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            log.warn("Invalid or missing Authorization header");
+            log.warn("authHeader is: " + authHeader);
             filterChain.doFilter(request, response);
             return;
         }

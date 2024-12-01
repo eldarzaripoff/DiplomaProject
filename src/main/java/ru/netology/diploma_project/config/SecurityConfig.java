@@ -12,7 +12,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
-import ru.netology.diploma_project.services.LogoutService;
 
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
@@ -40,8 +39,7 @@ public class SecurityConfig {
                         logout.logoutUrl("/logout")
                                 .addLogoutHandler(logoutHandler)
                                 .logoutSuccessHandler((request, response, authentication) -> SecurityContextHolder.clearContext())
-                )
-        ;
+                );
         return http.build();
     }
 }
