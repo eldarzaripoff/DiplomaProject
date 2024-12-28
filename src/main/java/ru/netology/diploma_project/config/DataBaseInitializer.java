@@ -21,9 +21,9 @@ public class DataBaseInitializer {
         return args -> {
             String password = passwordEncoder.encode("aboba");
 
-            if (!userRepository.findByLogin("eldar").isPresent()) {
+            if (!userRepository.findByLogin("eldar@mail.ru").isPresent()) {
                 User eldar = User.builder()
-                        .login("eldar")
+                        .login("eldar@mail.ru")
                         .password(password)
                         .role(Role.ADMIN)
                         .build();

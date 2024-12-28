@@ -27,6 +27,8 @@ public class File {
     private byte[] fileData;
     @Column(name = "file_size")
     private Long fileSize;
+    @Column(name = "hash")
+    private String hash;
     @ManyToOne
     @JoinColumn(name = "account_id", nullable = false)
     @JsonBackReference

@@ -1,23 +1,19 @@
 package ru.netology.diploma_project.controllers;
 
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-import ru.netology.diploma_project.models.entity.File;
 import ru.netology.diploma_project.models.entity.User;
+import ru.netology.diploma_project.models.requests.EditNameRequest;
+import ru.netology.diploma_project.models.requests.FileUploadRequest;
 import ru.netology.diploma_project.repositories.TokenRepository;
 import ru.netology.diploma_project.services.FileService;
 import ru.netology.diploma_project.services.JwtService;
-
-import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
@@ -34,38 +30,48 @@ public class FileController {
             @RequestHeader(name = "auth-token") String token,
             @RequestParam("filename") String fileName,
             @AuthenticationPrincipal User user,
-            @RequestBody MultipartFile file
+            @ModelAttribute FileUploadRequest fileUploadRequest
     ) {
         log.info("Получен файл с filename: " + fileName);
-        return fileService.loadFile(token, fileName, user, file);
+        return fileService.loadFile(token, fileName, user, fileUploadRequest);
     }
 
     @DeleteMapping("/file")
-    public ResponseEntity<String> deleteFile(
+    public ResponseEntity<?> deleteFile(
             @RequestHeader("auth-token") String authToken,
             @RequestParam("filename") String fileName,
             @AuthenticationPrincipal User user
     ) {
-        try {
-            if (!jwtService.isTokenValid(authToken, user)) {
-                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unauthorized: Invalid token");
-            }
-
-            log.info("Запрос прошёл аутентификацию");
-            Optional<File> foundFile = fileService.findFileByNameAndUser(fileName, user);
-            if (foundFile.isEmpty()) {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Такого файла не существует");
-            } else {
-                fileService.deleteFile(fileName, user, authToken);
-                return ResponseEntity.status(HttpStatus.OK).body("File deleted successfully");
-            }
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An unexpected error occurred: " + e.getMessage());
-        }
+        log.info("Получен запрос на удаление файла с filename: " + fileName);
+        return fileService.dropFile(authToken, fileName, user);
     }
 
     @GetMapping("/file")
-    public ResponseEntity<String> demo() {
-        return ResponseEntity.status(HttpStatus.OK).body("Hi!");
+    public ResponseEntity<?> getFile(
+            @RequestHeader("auth-token") String authToken,
+            @RequestParam("filename") String fileName,
+            @AuthenticationPrincipal User user
+    ) {
+        return fileService.getFile(authToken, fileName, user);
     }
+
+    @PutMapping(value = "/file", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> putFile(
+            @RequestHeader("auth-token") String authToken,
+            @RequestParam("filename") String fileName,
+            @AuthenticationPrincipal User user,
+            @RequestBody EditNameRequest editNameRequest
+    ) {
+        return fileService.putFile(authToken, fileName, user, editNameRequest);
+    }
+
+    @GetMapping(value = "/list", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> getFilesList(
+            @RequestHeader("auth-token") String authToken,
+            @RequestParam("limit") Integer limit,
+            @AuthenticationPrincipal User user
+    ) {
+        return fileService.getFilesList(authToken, limit, user);
+    }
+
 }
