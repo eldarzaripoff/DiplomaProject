@@ -43,6 +43,6 @@ public class AuthorizationService {
             tokenRepository.saveAll(allUserValidTokens);
         }
         tokenRepository.save(token);
-        return AuthorizationResponse.builder().auth_token(jwtToken).build();
+        return AuthorizationResponse.builder().authToken(jwtToken).build();
     }
 }
