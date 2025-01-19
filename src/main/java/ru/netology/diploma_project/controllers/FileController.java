@@ -7,21 +7,25 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import ru.netology.diploma_project.models.entity.User;
 import ru.netology.diploma_project.models.requests.EditNameRequest;
 import ru.netology.diploma_project.models.requests.FileUploadRequest;
-import ru.netology.diploma_project.repositories.TokenRepository;
 import ru.netology.diploma_project.services.FileService;
-import ru.netology.diploma_project.services.JwtService;
 
 @RestController
 @RequiredArgsConstructor
 public class FileController {
 
     private final FileService fileService;
-    private final JwtService jwtService;
-    private final TokenRepository tokenRepository;
     private static final Logger log = LoggerFactory.getLogger(AuthorizationController.class);
 
     @SneakyThrows
@@ -32,6 +36,7 @@ public class FileController {
             @AuthenticationPrincipal User user,
             @ModelAttribute FileUploadRequest fileUploadRequest
     ) {
+        log.info("Received auth-token: " + token);
         log.info("Получен файл с filename: " + fileName);
         return fileService.loadFile(token, fileName, user, fileUploadRequest);
     }

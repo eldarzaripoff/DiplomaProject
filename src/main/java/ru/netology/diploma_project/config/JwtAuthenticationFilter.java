@@ -20,6 +20,7 @@ import ru.netology.diploma_project.repositories.TokenRepository;
 import ru.netology.diploma_project.services.JwtService;
 
 import java.io.IOException;
+import java.util.Enumeration;
 
 @Component
 @RequiredArgsConstructor
@@ -36,17 +37,24 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             @NonNull HttpServletRequest request,
             @NonNull HttpServletResponse response,
             @NonNull FilterChain filterChain) throws ServletException, IOException {
-        // НЕ ЗАБУДЬ ИСПРАВИТЬ НА "auth-token"!!!!!!!!!!
-        final String authHeader = request.getHeader("Authorization");
+
+        final String authHeader = request.getHeader("auth-token");
         final String jwt;
         final String username;
-        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+
+        Enumeration<String> headerNames = request.getHeaderNames();
+        while (headerNames.hasMoreElements()) {
+            String headerName = headerNames.nextElement();
+            log.info("Header: {} = {}", headerName, request.getHeader(headerName));
+        }
+
+        if (authHeader == null) {
             log.warn("Invalid or missing Authorization header");
             log.warn("authHeader is: " + authHeader);
             filterChain.doFilter(request, response);
             return;
         }
-        jwt = authHeader.substring(7);
+        jwt = authHeader;
         username = jwtService.extractUserName(jwt);
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
